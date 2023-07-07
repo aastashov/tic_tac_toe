@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "tic-tac-toe"
+version = "0.1.0"
+description = ""
+authors = ["Alexander Astashov <alexander.astashov.vl@gmail.com>"]
+readme = "README.md"
+packages = [{include = "tic_tac_toe"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+uvicorn = "^0.22.0"
+fastapi = "^0.99.1"
+jinja2 = "^3.1.2"
+fastapi-socketio = "^0.0.10"
+websockets = "^11.0.3"
+
+
+[tool.poetry.group.local.dependencies]
+ipython = "^8.14.0"
+
+
+[tool.poetry.group.qa.dependencies]
+mypy = "^1.4.0"
+pytest = "^7.4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
