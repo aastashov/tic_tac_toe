@@ -17,8 +17,12 @@ import {store} from "@/utils/store";
 
 socket.on("game:new:callback", (eventJson: string) => {
     console.log("game:new:callback", eventJson);
-    store.board = JSON.parse(eventJson);
-    store.winner = '';
+    const parsedEvent = JSON.parse(eventJson);
+    store.board = parsedEvent.board;
+    store.turn = parsedEvent.turn;
+    store.winner = "";
+
+    socket.emit("player:join", store.player.uid);
 })
 
 socket.on("player:join:callback", (eventJson) => {
@@ -27,6 +31,7 @@ socket.on("player:join:callback", (eventJson) => {
     store.player = joinedInfo.player;
     store.board = joinedInfo.board;
     store.winner = joinedInfo.winner;
+    store.turn = joinedInfo.turn;
 })
 
 socket.on("connect", () => {

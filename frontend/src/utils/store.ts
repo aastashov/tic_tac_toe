@@ -11,9 +11,17 @@ export interface IPlayer {
     mark: String;
 }
 
+interface IStore {
+    server: IServer;
+    player: IPlayer;
+    turn: string,
+    board: Array<string>;
+    winner: string;
+}
+
 
 // @ts-ignore
-export const store: { server: IServer, player: IPlayer, board: Array<string>, winner: string } = reactive({
+export const store: IStore = reactive({
     server: {
         url: "localhost:8000"
     },
@@ -22,5 +30,6 @@ export const store: { server: IServer, player: IPlayer, board: Array<string>, wi
         mark: ""
     },
     board: ["", "", "", "", "", "", "", "", ""],
-    winner: ""
+    turn: "",
+    winner: "",
 })

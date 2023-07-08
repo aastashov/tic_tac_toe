@@ -12,7 +12,7 @@ install: install-front install-back
 build-js:
 	cd frontend/ && npm run build
 
-run-js-dev:
+run-dev-js:
 	cd frontend/ && npm run dev
 
 run-dev:
@@ -20,3 +20,9 @@ run-dev:
 
 tests:
 	pytest backend/tests
+
+lint:
+	ruff check .
+
+format:
+	ruff check --fix .

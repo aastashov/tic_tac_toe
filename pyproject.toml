@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Alexander Astashov <alexander.astashov.vl@gmail.com>"]
 readme = "README.md"
-packages = [{include = "tic_tac_toe"}]
+packages = [{ include = "tic_tac_toe" }]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -13,6 +13,7 @@ fastapi = "^0.99.1"
 jinja2 = "^3.1.2"
 fastapi-socketio = "^0.0.10"
 websockets = "^11.0.3"
+setuptools = "^68.0.0"
 
 
 [tool.poetry.group.local.dependencies]
@@ -22,6 +23,22 @@ ipython = "^8.14.0"
 [tool.poetry.group.qa.dependencies]
 mypy = "^1.4.0"
 pytest = "^7.4.0"
+ruff = "^0.0.277"
+
+[tool.ruff]
+src = ["backend"]
+line-length = 120
+select = [
+    "E", # pycodestyle
+    "F", # pyflakes
+    "UP", # pyupgrade
+    "D", # pydocstyle
+]
+extend-ignore = [
+    "D203", # `one-blank-line-before-class` (D203) and `no-blank-line-before-class` (D211) are incompatible. Ignoring `one-blank-line-before-class`.
+    "D212", # `multi-line-summary-first-line` (D212) and `multi-line-summary-second-line` (D213) are incompatible. Ignoring `multi-line-summary-second-line`.
+]
+
 
 [build-system]
 requires = ["poetry-core"]

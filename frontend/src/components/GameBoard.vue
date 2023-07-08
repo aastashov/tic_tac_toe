@@ -19,13 +19,20 @@ socket.on("game:win", (winnerMark: string) => {
     store.winner = winnerMark;
 })
 
-socket.on('player:mark:callback', (e) => {
-    console.log("player:mark:callback", e)
-    store.board = JSON.parse(e);
+socket.on('player:mark:callback', (eventJson) => {
+    console.log("player:mark:callback", eventJson);
+    const parsedEvent = JSON.parse(eventJson);
+    store.board = parsedEvent.board;
+    store.turn = parsedEvent.turn;
 })
 
 function playerMarkClick(markIndex: number) {
     console.log("playerMarkClick", markIndex);
+    if (store.turn != store.player.mark) {
+        console.log("playerMarkClick: not your turn")
+        return
+    }
+
     if (store.board[markIndex] !== store.player.mark) {
         socket.emit("player:mark", `${store.player.uid}|${markIndex}`);
     }

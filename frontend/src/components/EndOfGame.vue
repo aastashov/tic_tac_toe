@@ -11,7 +11,7 @@
           Thank you for playing this game 🤗
         </div>
         <div class="modal-footer">
-          <NewGameButton></NewGameButton>
+          <NewGameButton />
         </div>
       </div>
     </div>
@@ -19,17 +19,9 @@
   <div class="modal-backdrop fade show"></div>
 </template>
 <script lang="ts" setup>
-import {onMounted, ref} from "vue";
+import {computed} from "vue";
 import {store} from "@/utils/store";
 import NewGameButton from "@/components/NewGameButton.vue";
 
-const modelTitle = ref("");
-
-onMounted(() => {
-    if (store.winner === store.player.mark) {
-        modelTitle.value = "🎉 You win 🎉"
-    } else {
-        modelTitle.value = "You lost 😿"
-    }
-})
+const modelTitle = computed(() => store.winner === store.player.mark ? "🎉 You win 🎉" : "You lost 😿");
 </script>

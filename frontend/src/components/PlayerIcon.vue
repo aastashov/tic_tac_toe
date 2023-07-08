@@ -3,20 +3,13 @@
 </template>
 
 <script lang="ts" setup>
-import {onMounted, ref} from "vue";
+import {computed} from "vue";
 
-const props = defineProps(["mark"])
+const markMap: { [key: string]: string } = {
+    "x": "bi-x-lg",
+    "o": "bi-circle",
+}
 
-const iconClass = ref('');
-
-onMounted(() => {
-    if (props.mark === 'x') {
-        iconClass.value = 'bi-x-lg'
-    } else if (props.mark === 'o') {
-        iconClass.value = 'bi-circle'
-    } else {
-        iconClass.value = ''
-    }
-});
-
+const props = defineProps(["mark"]);
+const iconClass = computed(() => markMap[props.mark] || "");
 </script>

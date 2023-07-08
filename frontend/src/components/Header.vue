@@ -9,10 +9,11 @@
       </a>
       <div>
         Connection {{ state.connected }}.
-        <span v-if="playerMark">Your mark: <PlayerIcon :mark="playerMark"></PlayerIcon></span>
+        <span v-if="playerMark">Your mark: <PlayerIcon :mark="playerMark" /></span>
+        <span v-if="store.turn">Turn: <PlayerIcon :mark="store.turn" /></span>
       </div>
       <div>
-        <NewGameButton></NewGameButton>
+        <NewGameButton />
       </div>
     </div>
   </nav>
@@ -22,6 +23,7 @@
 import {state} from "@/socket";
 import PlayerIcon from "@/components/PlayerIcon.vue";
 import NewGameButton from "@/components/NewGameButton.vue";
+import {store} from "@/utils/store";
 
 defineProps(["playerMark"])
 
